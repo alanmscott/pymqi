@@ -25,6 +25,10 @@ put_msg_h.properties.set(property_name, message) # Default type is CMQC.MQTYPE_S
 
 pmo = pymqi.PMO(Version=pymqi.CMQC.MQPMO_VERSION_3) # PMO v3 is required properties
 pmo.OriginalMsgHandle = put_msg_h.msg_handle
+# pmo.PubLevel = 9
+# If putting a message onto a topic then 'PubLevel' must also be explicitly set to ensure subscribers can receive the message.
+# Default value on a new pmo is 0; only those subscriptions with the highest SubLevel less than or equal to this value receive this publication.
+# See: https://www.ibm.com/docs/en/ibm-mq/9.2?topic=mqpmo-publevel-mqlong
 
 put_md = pymqi.MD(Version=pymqi.CMQC.MQMD_CURRENT_VERSION)
 
